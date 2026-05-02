@@ -211,12 +211,17 @@ function Nav() {
                         <button className="cb2-icon-btn">
                             <GlobeIcon />
                         </button>
-                        <Link to="/signin">
-                            <button className="cb2-btn-signin">Sign in</button>
-                        </Link>
-                        <Link to="/signup">
-                            <button className="cb2-btn-signup">Sign up</button>
-                        </Link>
+                      <Link to="/signin">
+                        <button className="cb2-btn-signin">Sign in</button>
+                      </Link>
+                      <Link to="/signup">
+                         <button className="cb2-btn-signup">Sign up</button>
+                      </Link>
+                      <Link to="/profile">
+                         <button className="cb2-btn-signup" style={{ backgroundColor: "#f3f4f6", color: "#111", border: "1px solid #e5e7eb" }}>
+                             My Account
+                         </button>
+                      </Link>
                     </div>
                 </div>
             </nav>
