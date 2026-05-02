@@ -39,6 +39,9 @@ function SignUp() {
         setLoading(false);
         return;
       }
+      if (data.user) {
+  localStorage.setItem("user", JSON.stringify(data.user));
+}
 
       // Registration successful — go to home
       navigate("/");

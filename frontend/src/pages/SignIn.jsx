@@ -38,7 +38,9 @@ function SignIn() {
         setLoading(false);
         return;
       }
-
+        if (data.user) {
+              localStorage.setItem("user", JSON.stringify(data.user));
+            }   
       // Login successful — go to home
       navigate("/");
     } catch (err) {

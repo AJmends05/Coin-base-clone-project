@@ -8,44 +8,20 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, { 
-          method: "GET",
-          credentials: "include",
-        });
-        if (response.status === 401) {
-          navigate("/signin");
-          return;
-        }
-        const data = await response.json();
-        if (!response.ok) {
-          setError(data.message || "Failed to load profile");
-          setLoading(false);
-          return;
-        }
-        setUser(data);
-        setLoading(false);
-      } catch (err) {
-        setError("Unable to connect to server. Please try again.");
-        setLoading(false);
-      }
-    };
-    fetchProfile();
-  }, [navigate]);
+ useEffect(() => {
+  const stored = localStorage.getItem("user");
+  if (!stored) {
+    navigate("/signin");
+    return;
+  }
+  setUser(JSON.parse(stored));
+  setLoading(false);
+}, [navigate]);
 
-  const handleLogout = async () => {
-    try {
-      await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
-        method: "POST",
-        credentials: "include",
-      });
-      navigate("/signin");
-    } catch (err) {
-      console.error("Logout failed", err);
-    }
-  };
+ const handleLogout = () => {
+  localStorage.removeItem("user");
+  navigate("/signin");
+};
 
   if (loading) {
     return (
